@@ -177,7 +177,7 @@
 
     var request = new XMLHttpRequest;
 
-    var i = -1;
+    var i = <?php echo $a; ?>;
     var traiteResultat = function(){
       var data = this.responseText;
       console.log(data);
