@@ -1,6 +1,10 @@
 <?php
 session_start();
 $_SESSION['iduser'];
+
+if(!isset($_SESSION['iduser'])){
+    header("Location: index.html");
+}
 ?>
 <!doctype html>
 <html lang="fr">
