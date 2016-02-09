@@ -105,7 +105,7 @@ if(!isset($_SESSION['iduser'])){
 
   try
                 {
-                $connect = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', 'Simplon69');
+                $connect = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', 'root');
                 }
                 catch (Exception $e){
                 die('Erreur : '.$e->getMessage());
@@ -125,9 +125,14 @@ if(!isset($_SESSION['iduser'])){
 
 
 
+
+
   <form action="ok.php" method="post">
   <button>Terminer!</button>
   </form>
+
+
+
 
   <script type="text/javascript">
 
