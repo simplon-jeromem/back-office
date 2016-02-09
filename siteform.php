@@ -124,6 +124,11 @@ if(!isset($_SESSION['iduser'])){
   <input type="text" id='nom'/><input type="button" onclick='ajouter()' id='add' value="ajouter"/>
 
 
+
+  <form action="ok.php" method="post">
+  <button>Terminer!</button>
+  </form>
+
   <script type="text/javascript">
 
   var requete =new XMLHttpRequest();
