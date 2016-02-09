@@ -9,7 +9,7 @@ echo $_SESSION['iduser'];
 
 try
 {
-    $connect = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', '');
+    $connect = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', 'root');
 }
 catch (Exception $e){
     die('Erreur : '.$e->getMessage());
