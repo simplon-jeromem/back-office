@@ -104,26 +104,24 @@ if(!isset($_SESSION['iduser'])){
   <?php
 
   try
-  {
-    $connect = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', 'root');
-  }
-  catch (Exception $e){
-    die('Erreur : '.$e->getMessage());
-  }
-  $a = -1;
-  $request = "SELECT * FROM `techno`";
-  $result = $connect->query($request);
-  while($data = $result->fetch()){
-    $a++;
-    ?>
-    <tr>
-      <td class='name'><?php echo $data['techno']; ?></td><td><input type="radio"  name="lvl<?php echo $a; ?>" onclick='valeur(<?php echo $a; ?>, event)' value="0"/></td><td><input type="radio" name="lvl<?php echo $a; ?>" onclick='valeur(<?php echo $a; ?>, event)'  value="1"/></td><td><input type="radio" name="lvl<?php echo $a; ?>" onclick='valeur(<?php echo $a; ?>, event)'  value="2"/></td><td><input type="radio" name="lvl<?php echo $a; ?>" onclick='valeur(<?php echo $a; ?>, event)'  value="3"/></td><td><input type="radio" name="lvl<?php echo $a; ?>" onclick='valeur(<?php echo $a; ?>, event)'  value="4"/></td><td><input type="radio" name="lvl<?php echo $a; ?>" onclick='valeur(<?php echo $a; ?>, event)'  value="5"/></td>
-    </tr>
-    <?php } ?>
+                {
+                $connect = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', 'Simplon69');
+                }
+                catch (Exception $e){
+                die('Erreur : '.$e->getMessage());
+                }
+                $a = -1;
+                $request = "SELECT * FROM `techno` INNER JOIN competences ON competences.idt=techno.id";
+                $result = $connect->query($request);
+                while($data = $result->fetch()){
+                $a++;
+                ?>
+                <tr>
+                <td class='name'><?php echo $data['techno'] ?></td><td><input type="radio" name="lvl<?php echo $a ?>" onclick='valeur(<?php echo $a ?>, event)' value="0"/></td><td><input type="radio" <?php if($data['niveau'] == 1){echo 'checked="checked"';}; ?> name="lvl<?php echo $a ?>" onclick='valeur(<?php echo $a ?>, event)'  value="1"/></td><td><input type="radio" <?php if($data['niveau'] == 2){echo 'checked="checked"';}; ?> name="lvl<?php echo $a ?>" onclick='valeur(<?php echo $a ?>, event)'  value="2"/></td><td><input type="radio" <?php if($data['niveau'] == 3){echo 'checked="checked"';}; ?> name="lvl<?php echo $a ?>" onclick='valeur(<?php echo $a ?>, event)'  value="3"/></td><td><input type="radio" <?php if($data['niveau'] == 4){echo 'checked="checked"';}; ?> name="lvl<?php echo $a ?>" onclick='valeur(<?php echo $a ?>, event)'  value="4"/></td><td><input type="radio" <?php if($data['niveau'] == 5){echo 'checked="checked"';}; ?> name="lvl<?php echo $a ?>" onclick='valeur(<?php echo $a ?>, event)'  value="5"/></td>  
+                </tr>
+        <?php } ?>
   </table>
   <input type="text" id='nom'/><input type="button" onclick='ajouter()' id='add' value="ajouter"/>
-
-
 
 
   <script type="text/javascript">
