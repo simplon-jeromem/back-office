@@ -37,6 +37,9 @@
   </style>
 </head>
 <body>
+
+<a href="requete-login/logout.php">Logout</a>
+
   <form id="userForm">
     <label for="tel">Tel</label>  <input id="tel" name="titre" type="text" placeholder="Ecrire nom" />
     </br><label for="mail">Mail</label>  <input id="mail" name="tache" type="text" placeholder="Ecrire mail" />
