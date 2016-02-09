@@ -205,7 +205,7 @@
         radio.setAttribute('type', 'radio');
         td2.appendChild(radio);
         radio.setAttribute('name', 'lvl'+i);
-        radio.setAttribute('value', i);
+        radio.setAttribute('value', j);
         radio.setAttribute('onclick', fonction);
       }
     }
