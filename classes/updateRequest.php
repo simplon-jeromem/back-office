@@ -17,7 +17,7 @@ class UpdateRequest
     public function update()
     {
         try {
-            $connexion = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', ' ');
+            $connexion = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', 'root');
         } catch (Exeption $e) {
             die ('Erreur : ' . $e->getMessage());
         }
