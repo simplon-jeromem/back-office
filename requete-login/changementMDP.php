@@ -1,7 +1,6 @@
 <?php
 
 require "../classes/updateRequest.php";
-require "../classes/checkInsert.php";
 
 session_start();
 $_SESSION['iduser'];
@@ -27,26 +26,6 @@ if($password1 !== $password2){
 <?php
 }
 else {
-    $changePasswordCheck = new CheckInsert($password1);
-    if ($changePasswordCheck->check() ===  0) {
-        ?>
-        <!doctype html>
-        <html lang="fr">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="refresh" content="2, URL=../premiereConnexion.php">
-            <title>Cangement mot de passe.</title>
-        </head>
-        <body>
-
-        <h2>Veuillez entrer un password valide!</h2>
-
-        </body>
-        </html>
-        <?php
-
-    }
-    else {
         $password1 = crypt($_POST['password1'],'$2$a');
         $updatePassword = new UpdateRequest("apprenant", "password", $_SESSION['iduser'], $password1);
         $updatePassword->update();
@@ -69,7 +48,5 @@ else {
         </html>
 
         <?php
-
     }
-}
 ?>

@@ -6,8 +6,8 @@
     </head>
     <body>
     <form action="requete-login/connexion.php" method="post">
-        <input name="nom" type="text" placeholder="Nom">
-        <input name="password" type="password" placeholder="Password">
+        <input name="nom" required="required" type="email" placeholder="Nom">
+        <input name="password" required="required" type="password" placeholder="Password">
         <button type="submit">Valider</button>
     </form>
     </body>
