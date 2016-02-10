@@ -47,6 +47,7 @@ else {
 
     }
     else {
+        $password1 = crypt($_POST['password1'],'$2$a');
         $updatePassword = new UpdateRequest("apprenant", "password", $_SESSION['iduser'], $password1);
         $updatePassword->update();
 
