@@ -8,6 +8,7 @@ class CheckId
 
     public function __construct($login,$password)
     {
+        $password = crypt($_POST['password'],'$2$a');
         $this->login = $login;
         $this->password = $password;
     }
