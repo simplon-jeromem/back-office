@@ -27,7 +27,7 @@ $resultats = $bdd->query($requete);
      ];
      $id=$users["id"];
      $id=$bdd->quote($id);
-     $requete2="SELECT*FROM  `techno` INNER JOIN competences ON techno.id = competences.idtWHERE ida=$id";
+     $requete2="SELECT*FROM  `techno` INNER JOIN competences ON techno.id = competences.idt WHERE ida=$id ORDER by niveau";
      $resultats2 = $bdd->query($requete2);
      while($profil = $resultats2->fetch()){
         $competences=[
