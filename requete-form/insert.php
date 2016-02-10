@@ -3,7 +3,7 @@ $newTech = $_GET['name'];
 
 try
 {
-    $connect = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', 'root');
+    $connect = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', ' ');
 }
 catch (Exception $e){
     die('Erreur : '.$e->getMessage());

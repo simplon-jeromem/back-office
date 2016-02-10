@@ -16,15 +16,18 @@ class CheckId
     public function checkId()
     {
         try {
-            $connexion = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', 'root');
+            $connexion = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', ' ');
         } catch (Exeption $e) {
             die ('Erreur : ' . $e->getMessage());
         }
 
-        $requete = "SELECT * FROM `apprenant` WHERE `nom`='$this->login' AND `password`='$this->password'";
-        $result = $connexion->query($requete);
-        $resultFinal = $result->fetch();
+        $stmt = $connexion->prepare("SELECT * FROM `apprenant`  LEFT JOIN `lien` ON apprenant.id = lien.id WHERE lien.`mail`=:login AND apprenant.`password`=:password");
+        $stmt->bindParam(':login',$this->login, PDO::PARAM_STR);
+        $stmt->bindParam(':password',$this->password, PDO::PARAM_STR);
+        $stmt->execute();
+        $resultFinal = $stmt->fetch();
         return $resultFinal;
+
     }
 }
 

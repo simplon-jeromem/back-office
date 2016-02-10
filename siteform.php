@@ -46,7 +46,7 @@ if(!isset($_SESSION['iduser'])){
   $iduser = $_SESSION['iduser'];
 
   try {
-    $connexion=new PDO('mysql:host=localhost;dbname=simplonsite;charset=utf8','root','root');
+    $connexion=new PDO('mysql:host=localhost;dbname=simplonsite;charset=utf8','root',' ');
   }
   catch (Exception $e){
     die ('erreur : '.$e->getMessage());
@@ -106,7 +106,7 @@ if(!isset($_SESSION['iduser'])){
 
   try
   {
-    $connect = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', 'root');
+    $connect = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', ' ');
   }
   catch (Exception $e){
     die('Erreur : '.$e->getMessage());
