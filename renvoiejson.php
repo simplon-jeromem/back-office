@@ -12,8 +12,6 @@ $requete="SELECT * FROM  `lien` INNER JOIN apprenant ON apprenant.id = lien.id";
 $resultats = $bdd->query($requete);
  while( $users = $resultats->fetch()){
   if($users["id"]<25){
-   
-  }else{
      $tableau=[
          "nom"=>$users["nom"],
          "prenom"=>$users["prenom"],
