@@ -32,17 +32,20 @@ if(!isset($_SESSION['iduser'])){
   $iduser = $_SESSION['iduser'];
 
   try {
-    $connexion=new PDO('mysql:host=localhost;dbname=simplonsite;charset=utf8','root','root');
+    $connexion=new PDO('mysql:host=localhost;dbname=simplonsite;charset=utf8','root','');
   }
   catch (Exception $e){
     die ('erreur : '.$e->getMessage());
   }
 
-  //requete pour afficher le contenu de la table lien
+  //AFFICHAGE Lien
+  $requete = $connexion->prepare("SELECT * FROM  `lien` WHERE id=:iduser");
+  $requete->bindParam(':iduser',$iduser, PDO::PARAM_STR);
+  $requete->execute();
+  $lien = $requete->fetch();
 
-  $requete="SELECT * FROM `lien` WHERE id='".$iduser."'";
-  $reponse = $connexion->query($requete);
-  $lien = $reponse->fetch();
+
+  //PUTAIN DE INPUT !!
   $tel = $lien['tel'];
   $mail = $lien['mail'];
   $git = $lien['git'];
@@ -50,15 +53,19 @@ if(!isset($_SESSION['iduser'])){
   $twitter = $lien['twitter'];
   $linkedin = $lien['linked'];
   $siteperso = $lien['siteperso'];
-  //  $reponse->closeCursor();
 
-  //requete pour afficher le contenu de la table apprenant
+  //AFFICHAGE Apprenant
+  $requete2 = $connexion->prepare("SELECT * FROM  `apprenant` WHERE id=:iduser");
+  $requete2->bindParam(':iduser',$iduser, PDO::PARAM_STR);
+  $requete2->execute();
+  $apprenant = $requete2->fetch();
 
-  $requete2="SELECT * FROM `apprenant` WHERE id='".$iduser."'";
-  $reponse2 = $connexion->query($requete2);
-  $apprenant = $reponse2->fetch();
+
   $desc = $apprenant['description'];
+
+
   ?>
+
 
   <header>
     <a id="logout"href="requete-login/logout.php">Logout</a>
@@ -139,24 +146,19 @@ if(!isset($_SESSION['iduser'])){
   </tr>
   <?php
 
-  // try
-  // {
-  //   $connect = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', 'root');
-  // }
-  // catch (Exception $e){
-  //   die('Erreur : '.$e->getMessage());
-  // }
-
 
   $a = -1;
-  $request = "SELECT * FROM `techno`";
-  $result = $connexion->query($request);
 
-  while($data = $result->fetch()){
+  $request = $connexion->prepare("SELECT * FROM `techno`");
+  $request->execute();
+
+  while($data = $request->fetch(PDO::FETCH_BOTH)){
     $idt = $data['id'];
-    $req = "SELECT * FROM `competences` WHERE ida=$iduser AND idt=$idt";
-    $res = $connexion->query($req);
-    $comp = $res->fetch();
+    $req = $connexion->prepare("SELECT * FROM `competences` WHERE ida=$iduser AND idt=$idt");
+    $req->bindParam(':iduser', $iduser, PDO::PARAM_INT);
+    $req->bindParam(':idt', $idt, PDO::PARAM_INT);
+    $req->execute();
+    $comp = $req->fetch();
     $a++;
 
 
