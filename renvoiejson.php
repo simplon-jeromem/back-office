@@ -6,10 +6,14 @@
     } catch ( Exception $e ){
         die('Erreur : '.$e->getMessage() );
     }
+$nombreeleve=0
 $eleves=[];
 $requete="SELECT * FROM  `lien` INNER JOIN apprenant ON apprenant.id = lien.id";
 $resultats = $bdd->query($requete);
  while( $users = $resultats->fetch()){
+  if($users["id"]<25){
+   
+  }else{
      $tableau=[
          "nom"=>$users["nom"],
          "prenom"=>$users["prenom"],
@@ -40,7 +44,7 @@ $resultats = $bdd->query($requete);
      
      
      array_push($eleve,$tableau);
- }; 
+ }}; 
 echo json_encode($eleve);
 ?>
 
