@@ -13,7 +13,7 @@ $resultats = $bdd->query($requete);
  while( $users = $resultats->fetch()){
   if($users["id"]<25){
      $tableau=[
-         "nom"=>$users["prenom"]."&nbsp;".$users["nom"],
+         "nom"=>$users["prenom"]." ".$users["nom"],
          "prenom"=>$users["prenom"],
          "gif"=>$users["gif"],
          "gif2"=>$users["photo"],
