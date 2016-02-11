@@ -7,6 +7,7 @@ $linked=$_GET["linked"];
 $codepen=$_GET["codepen"];
 $twitter=$_GET["twitter"];
 $siteperso=$_GET["siteperso"];
+$cv = $_GET["cv"];
 
 
 try {
@@ -17,7 +18,7 @@ die ('erreur : '.$e->getMessage());
 }
 
        $requete="UPDATE `lien` SET `git`= '$git',`linked`= '$linked',`codepen`= '$codepen',
-`twitter`= '$twitter',`siteperso`='$siteperso' WHERE id=$iduser";
+`twitter`= '$twitter',`siteperso`='$siteperso', `cv`='$cv' WHERE id=$iduser";
 echo $requete;
        $reponses  = $connexion->query($requete);
        $reponses->closeCursor();

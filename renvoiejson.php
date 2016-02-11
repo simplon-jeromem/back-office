@@ -1,4 +1,4 @@
-<?php 
+<?php
 header('Access-Control-Allow-Origin:*');
  try
     {
@@ -22,7 +22,7 @@ $resultats = $bdd->query($requete);
          "codepen"=>$users["codepen"],
          "portfolio"=>$users["siteperso"],
         "competences"=>[],
-        "reseau"=>[],
+        "reseaux"=>[],
      ];
       $reseau =[
              "twitter" => $users["twitter"],
@@ -41,13 +41,11 @@ $resultats = $bdd->query($requete);
         "niveau"=>$profil["niveau"]
         ];
         array_push($tableau["competences"],$competences);
-     
+
      };
-     
-     
+
+
      array_push($eleves,$tableau);
- }}; 
+ }};
 echo json_encode($eleves);
 ?>
-
-
