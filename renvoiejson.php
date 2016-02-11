@@ -1,7 +1,13 @@
-<?php 
+<?php
+
+
+header("Access-Control-Allow-Origin:*");
+
+
+
  try
     {
-        $bdd = new PDO('mysql:host=localhost;dbname=simplonsite;charset=utf8', 'root', 'passe');
+        $bdd = new PDO('mysql:host=localhost;dbname=simplonsite;charset=utf8', 'root', 'root');
 
     } catch ( Exception $e ){
         die('Erreur : '.$e->getMessage() );
@@ -39,9 +45,9 @@ $resultats = $bdd->query($requete);
      };
      
      
-     array_push($eleve,$tableau);
+     array_push($eleves,$tableau);
  }; 
-echo json_encode($eleve);
+echo json_encode($eleves);
 ?>
 
 
