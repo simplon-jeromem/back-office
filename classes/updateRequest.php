@@ -22,8 +22,10 @@ class UpdateRequest
             die ('Erreur : ' . $e->getMessage());
         }
 
-        $requete = "UPDATE `$this->tableToUpdate` SET `$this->columnToChange`='$this->newValue' WHERE `id`='$this->idOfLineToChange'";
-        $connexion->query($requete);
+        $requete = $connexion->prepare("UPDATE `$this->tableToUpdate` SET `$this->columnToChange`=:newValue WHERE `id`=:idOfLineToChange");
+        $requete->bindParam(':newValue',$this->newValue, PDO::PARAM_STR);
+        $requete->bindParam(':idOfLineToChange',$this->idOfLineToChange, PDO::PARAM_STR);
+        $requete->execute();
     }
 }
 
