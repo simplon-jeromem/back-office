@@ -1,7 +1,8 @@
 <?php 
+header('Access-Control-Allow-Origin:*');
  try
     {
-        $bdd = new PDO('mysql:host=localhost;dbname=simplonsite;charset=utf8', 'root', 'passe');
+        $bdd = new PDO('mysql:host=localhost;dbname=simplonsite;charset=utf8', 'root', 'root');
 
     } catch ( Exception $e ){
         die('Erreur : '.$e->getMessage() );
@@ -32,7 +33,7 @@ $resultats = $bdd->query($requete);
          array_push($tableau["reseau"],$reseau);
      $id=$users["id"];
      $id=$bdd->quote($id);
-     $requete2="SELECT*FROM  `techno` INNER JOIN competences ON techno.id = competences.idt WHERE ida=$id ORDER BY niveau";
+     $requete2="SELECT*FROM  `techno` INNER JOIN competences ON techno.id = competences.idt WHERE ida=$id ORDER BY niveau desc";
      $resultats2 = $bdd->query($requete2);
      while($profil = $resultats2->fetch()){
         $competences=[
