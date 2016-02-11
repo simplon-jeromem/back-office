@@ -12,8 +12,8 @@
         <title>Document</title>
     </head>
     <body>
-    <form action="requete-login/connexion.php" method="post">
-        <input name="nom" required="required" type="email" placeholder="Nom">
+    <form action="requete-login/connexion.php" method="post" style="width:300px">
+        <input name="nom" required="required" type="email" placeholder="Mail">
         <input name="password" required="required" type="password" placeholder="Password">
         <button type="submit">Valider</button>
     </form>

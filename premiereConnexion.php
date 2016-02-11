@@ -22,7 +22,7 @@ if(!isset($_SESSION['iduser'])){
 <body>
 <a href="requete-login/logout.php">Logout</a>
 <p>Veuillez renseigner un nouveau mot de passe et le confirmer.</p>
-<form action="requete-login/changementMDP.php" method="post">
+<form action="requete-login/changementMDP.php" method="post" style="width:300px">
     <input name="password1" required="required" type="password" placeholder="Nouveau mot de passe">
     <input name="password2" required="required" type="password" placeholder="Entrer à nouveau votre mot de passe">
     <button type="submit">Valider</button>
