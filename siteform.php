@@ -43,6 +43,13 @@ if(!isset($_SESSION['iduser'])){
   $requete="SELECT * FROM `lien` WHERE id='".$iduser."'";
   $reponse = $connexion->query($requete);
   $lien = $reponse->fetch();
+  $tel = $lien['tel'];
+  $mail = $lien['mail'];
+  $git = $lien['git'];
+  $codepen = $lien['codepen'];
+  $twitter = $lien['twitter'];
+  $linkedin = $lien['linked'];
+  $siteperso = $lien['siteperso'];
   //  $reponse->closeCursor();
 
   //requete pour afficher le contenu de la table apprenant
@@ -50,6 +57,7 @@ if(!isset($_SESSION['iduser'])){
   $requete2="SELECT * FROM `apprenant` WHERE id='".$iduser."'";
   $reponse2 = $connexion->query($requete2);
   $apprenant = $reponse2->fetch();
+  $desc = $apprenant['description'];
   ?>
 
   <header>
@@ -57,12 +65,12 @@ if(!isset($_SESSION['iduser'])){
   </header>
   <form id="userForm">
     <div class="bloc"><label id="phone" for="tel">Tel</label>
-      <div class="contact"><input id="tel" name="titre" type="text" placeholder="Numéro de téléphone" value=""/>
+      <div class="contact"><input id="tel" name="titre" type="text" placeholder="Numéro de téléphone" value="<?php echo $tel ?>"/>
       </div>
     </div>
 
     </br><div class="bloc"><label for="mail">Mail</label>
-      <div class="contact">  <input id="mail" name="tache" type="text" placeholder="Adresse mail" value=""/>
+      <div class="contact">  <input id="mail" name="tache" type="text" placeholder="Adresse mail" value="<?php echo $mail ?>"/>
       </div>
     </div>
 
@@ -70,7 +78,7 @@ if(!isset($_SESSION['iduser'])){
     <div class="bloc">
       <div id="description"><label for="desc">Description</label>
       </div>
-      <textarea id="desc" ></textarea>
+      <textarea id="desc" ><?php echo $desc ?></textarea>
     </div>
     <button onclick="modifdesc()"  type="button">Modifier description </button>
   </form>
@@ -85,7 +93,7 @@ if(!isset($_SESSION['iduser'])){
       <label for="git">Github</label></br>
       <div class="bloc">
         <div class="un"><span style='display=inline-block'>https://github.com/</span></div>
-        <div class="deux"><input id="git" type="text" placeholder="Ecrire ici" value=""/>
+        <div class="deux"><input id="git" type="text" placeholder="Ecrire ici" value="<?php echo $git ?>"/>
         </div>
       </div>
     </li>
@@ -94,7 +102,7 @@ if(!isset($_SESSION['iduser'])){
       <div class="bloc">
         <div class="un"><span style='display=inline-block'>https://codepen.io/</span>
         </div>
-        <div class="deux"> <input id="codepen" type="text" placeholder="Ecrire ici" value="" />
+        <div class="deux"> <input id="codepen" type="text" placeholder="Ecrire ici" value="<?php echo $codepen ?>" />
         </div>
       </div>
     </li>
@@ -102,7 +110,7 @@ if(!isset($_SESSION['iduser'])){
       <div class="bloc">
         <div class="un"><span style='display=inline-block'>https://fr.linkedin.com/</span>
         </div>
-        <div class="deux"> <input id="linkedin" type="text" placeholder="Ecrire ici" value=""/>
+        <div class="deux"> <input id="linkedin" type="text" placeholder="Ecrire ici" value="<?php echo $linkedin ?>"/>
         </div>
       </div>
     </li>
@@ -110,12 +118,12 @@ if(!isset($_SESSION['iduser'])){
       <div class="bloc">
         <div class="un"><span style='display=inline-block'>https://twitter.com/</span>
         </div>
-        <div class="deux"> <input id="twitter" type="text" placeholder="Ecrire ici" value=""/>
+        <div class="deux"> <input id="twitter" type="text" placeholder="Ecrire ici" value="<?php echo $twitter ?>"/>
         </div>
       </div>
     </li>
     <li>
-      <label id="sp"for="sitepers">Site perso</label><input id="sitepers" type="text" placeholder="Ecrire ici" value=""/>
+      <label id="sp"for="sitepers">Site perso</label><input id="sitepers" type="text" placeholder="Ecrire ici" value="<?php echo $siteperso ?>"/>
     </li>
 
   </ul>
@@ -131,30 +139,30 @@ if(!isset($_SESSION['iduser'])){
   </tr>
   <?php
 
-  try
-  {
-    $connect = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', 'root');
-  }
-  catch (Exception $e){
-    die('Erreur : '.$e->getMessage());
-  }
+  // try
+  // {
+  //   $connect = new PDO('mysql:host=localhost; dbname=simplonsite; charset=utf8', 'root', 'root');
+  // }
+  // catch (Exception $e){
+  //   die('Erreur : '.$e->getMessage());
+  // }
 
 
   $a = -1;
   $request = "SELECT * FROM `techno`";
-  $result = $connect->query($request);
+  $result = $connexion->query($request);
 
   while($data = $result->fetch()){
     $idt = $data['id'];
     $req = "SELECT * FROM `competences` WHERE ida=$iduser AND idt=$idt";
-    $res = $connect->query($req);
+    $res = $connexion->query($req);
     $comp = $res->fetch();
     $a++;
 
 
     ?>
     <tr>
-      <td <?php if($a % 2 !== 0){ echo "class='colorRed'";} ?> class='name'>
+      <td class='name <?php if($a % 2 !== 0){ echo 'colorRed';} ?>' >
         <?php echo $data['techno'] ?>
       </td>
       <td <?php if($a % 2 !== 0){ echo "class='colorRed'";} ?>>
