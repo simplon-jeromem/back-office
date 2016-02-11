@@ -24,12 +24,31 @@ $resultats = $bdd->query($requete);
         "competences"=>[],
         "reseaux"=>[],
      ];
-      $reseau =[
+      if(($users["twitter"]=="") and ($users["linked"]==null)){
+           $reseau =[
+             "email" => $users["mail"],
+             "cv" => $users["cv"],
+         ];
+        }else if($users["twitter"]==""){
+         $reseau =[
+             "linkedin" => $users["linked"],
+             "email" => $users["mail"],
+             "cv" => $users["cv"],
+         ];   
+        }else if($users["linked"]==null){
+            $reseau =[
+             "twitter" => $users["twitter"],
+             "email" => $users["mail"],
+             "cv" => $users["cv"],
+         ];  
+        }else{
+            $reseau =[
              "twitter" => $users["twitter"],
              "linkedin" => $users["linked"],
              "email" => $users["mail"],
              "cv" => $users["cv"],
-         ];
+         ]; 
+        }
          array_push($tableau["reseau"],$reseau);
      $id=$users["id"];
      $id=$bdd->quote($id);
