@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin:*');
  try
     {
-        $bdd = new PDO('mysql:host=localhost;dbname=simplonsite;charset=utf8', 'root', 'passe');
+        $bdd = new PDO('mysql:host=localhost;dbname=simplonsite;charset=utf8', 'root', 'root');
 
     } catch ( Exception $e ){
         die('Erreur : '.$e->getMessage() );
