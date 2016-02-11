@@ -10,6 +10,7 @@ $eleves=[];
 $requete="SELECT * FROM  `lien` INNER JOIN apprenant ON apprenant.id = lien.id";
 $resultats = $bdd->query($requete);
  while( $users = $resultats->fetch()){
+  if($users["id"]<=24){
      $tableau=[
          "nom"=>$users["nom"],
          "prenom"=>$users["prenom"],
@@ -27,7 +28,7 @@ $resultats = $bdd->query($requete);
      ];
      $id=$users["id"];
      $id=$bdd->quote($id);
-     $requete2="SELECT*FROM  `techno` INNER JOIN competences ON techno.id = competences.idt WHERE ida=$id ORDER BY niveau";
+     $requete2="SELECT*FROM  `techno` INNER JOIN competences ON techno.id = competences.idt WHERE ida=$id ORDER BY niveau desc";
      $resultats2 = $bdd->query($requete2);
      while($profil = $resultats2->fetch()){
         $competences=[
@@ -40,7 +41,7 @@ $resultats = $bdd->query($requete);
      
      
      array_push($eleve,$tableau);
- }; 
+ }}; 
 echo json_encode($eleve);
 ?>
 
