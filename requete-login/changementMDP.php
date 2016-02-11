@@ -13,13 +13,20 @@ if($password1 !== $password2){
     <!doctype html>
     <html lang="fr">
     <head>
+
+        <!-- CSS Reset -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+
+        <!-- Milligram CSS minified -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.1.0/milligram.min.css">
+
         <meta charset="UTF-8">
         <meta http-equiv="refresh" content="2, URL=premiereConnexion.php">
         <title>Cangement mot de passe.</title>
     </head>
     <body>
 
-        <h2>Les passwords sont differents!</h2>
+        <p>Les passwords sont differents!</p>
 
     </body>
     </html>
@@ -36,13 +43,19 @@ else {
         <!doctype html>
         <html lang="fr">
         <head>
-            <meta http-equiv="refresh" content="2, URL=../siteform.php">
+            <!-- CSS Reset -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+
+            <!-- Milligram CSS minified -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.1.0/milligram.min.css">
+
+            <meta http-equiv="refresh" content="1, URL=../siteform.php">
             <meta charset="UTF-8">
             <title>Changement</title>
         </head>
         <body>
 
-        <h2>Votre changement a bien été pris en compte!</h2>
+        <p>Votre changement a bien été pris en compte!</p>
 
         </body>
         </html>

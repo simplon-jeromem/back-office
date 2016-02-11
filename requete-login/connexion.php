@@ -15,7 +15,7 @@ if(isset($login) && isset($password)) {
             session_start();
             $_SESSION['iduser'] = $connexionUser->checkId()['id'];
             if($connexionUser->checkId()['autorisation'] === "1"){
-                $redirectionSadmin = new Redirection('../superAdmin.php');
+                $redirectionSadmin = new Redirection('../Admin/admin.php');
                 $redirectionSadmin->redirect();
             }
             else{
