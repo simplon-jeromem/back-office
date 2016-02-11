@@ -1,8 +1,5 @@
 <?php
 session_start();
-$_SESSION['iduser'];
-
-
 if(!isset($_SESSION['iduser'])){
   header("Location: index.php");
 }
@@ -11,35 +8,23 @@ if(!isset($_SESSION['iduser'])){
 <!DOCTYPE html>
 <html>
 <head>
+
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+
+  <!-- CSS Reset -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+
+  <!-- Milligram CSS minified -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.1.0/milligram.min.css">
+
+  <!-- You should properly set the path from the main file. -->
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,400italic,500italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="siteform.css"/>
+
   <meta charset="utf-8">
-  <title></title>
-  <style media="screen">
-  input {
-    display:inline-block;
-
-  }
-  textarea  {
-    margin-top: 20px ;
-    height:100px;
-  }
-  button {
-    margin-top: 20px;
-    display: block;
-  }
-  textarea {
-    height:100px;
-    width:300px;
-    resize:none;
-  }
-
-  /*label {
-  display: inline-block;
-  width: 100px;
-  text-align: right;
-  }*/
-
-
-  </style>
+  <title>Changement des informations</title>
 </head>
 <body>
   <?php
@@ -67,33 +52,74 @@ if(!isset($_SESSION['iduser'])){
   $apprenant = $reponse2->fetch();
   ?>
 
-  <a href="requete-login/logout.php">Logout</a>
-
+  <header>
+    <a id="logout"href="requete-login/logout.php">Logout</a>
+  </header>
   <form id="userForm">
-    <label for="tel">Tel</label>  <input id="tel" name="titre" type="text" placeholder="Numéro de téléphone" value="<?php echo $lien['tel']; ?>"/>
-  </br><label for="mail">Mail</label>  <input id="mail" name="tache" type="text" placeholder="Adresse mail" value="<?php echo $lien['mail']; ?>"/>
-  <button onclick="modifcontact()"  type="button">Modifier contact</button>
-  <label for="desc">Description</label>  <textarea id="desc" ><?php echo $apprenant['description']; ?></textarea>
-  <button onclick="modifdesc()"  type="button">Modifier description </button>
-</form>
-<p>réseaux</p>
-<ul>
-  <li>
-    <label for="git">Github</label></br><span style='display=inline-block'>https://github.com/</span><input id="git" type="text" placeholder="Ecrire nom" value="<?php echo $lien['git']; ?>"/>
+    <div class="bloc"><label id="phone" for="tel">Tel</label>
+      <div class="contact"><input id="tel" name="titre" type="text" placeholder="Numéro de téléphone" value=""/>
+      </div>
+    </div>
 
-  </li>
-  <li>
-    <label for="codepen">Codepen</label> </br><span style='display=inline-block'>https://codepen.io/</span> <input id="codepen" type="text" placeholder="Ecrire nom" value="<?php echo $lien['codepen']; ?>" />
-  </li>
-  <li><label for="linkedin">LinkedIn</label> </br><span style='display=inline-block'>https://fr.linkedin.com/</span> <input id="linkedin" type="text" placeholder="Ecrire nom" value="<?php echo $lien['linked']; ?>"/>
-  </li>
-  <li><label for="twitter">Twitter</label> </br><span style='display=inline-block'>https://twitter.com/</span> <input id="twitter" type="text" placeholder="Ecrire nom" value="<?php echo $lien['twitter']; ?>"/>
-  </li>
-  <li>
-    <label for="sitepers">Site perso</label>  <input id="sitepers" type="text" placeholder="Ecrire nom" value="<?php echo $lien['siteperso']; ?>"/>
-  </li>
-</ul>
-<button onclick="modiflien()"  type="button">Modifier lien</button>
+    </br><div class="bloc"><label for="mail">Mail</label>
+      <div class="contact">  <input id="mail" name="tache" type="text" placeholder="Adresse mail" value=""/>
+      </div>
+    </div>
+
+    <button id="modif"class="button button-outline" onclick="modifcontact()"  type="button">Modifier contact</button>
+    <div class="bloc">
+      <div id="description"><label for="desc">Description</label>
+      </div>
+      <textarea id="desc" ></textarea>
+    </div>
+    <button onclick="modifdesc()"  type="button">Modifier description </button>
+  </form>
+
+
+
+
+
+  <p id="rsx">Réseaux</p>
+  <ul>
+    <li>
+      <label for="git">Github</label></br>
+      <div class="bloc">
+        <div class="un"><span style='display=inline-block'>https://github.com/</span></div>
+        <div class="deux"><input id="git" type="text" placeholder="Ecrire ici" value=""/>
+        </div>
+      </div>
+    </li>
+    <li>
+      <label for="codepen">Codepen</label> </br>
+      <div class="bloc">
+        <div class="un"><span style='display=inline-block'>https://codepen.io/</span>
+        </div>
+        <div class="deux"> <input id="codepen" type="text" placeholder="Ecrire ici" value="" />
+        </div>
+      </div>
+    </li>
+    <li><label for="linkedin">LinkedIn</label> </br>
+      <div class="bloc">
+        <div class="un"><span style='display=inline-block'>https://fr.linkedin.com/</span>
+        </div>
+        <div class="deux"> <input id="linkedin" type="text" placeholder="Ecrire ici" value=""/>
+        </div>
+      </div>
+    </li>
+    <li><label for="twitter">Twitter</label> </br>
+      <div class="bloc">
+        <div class="un"><span style='display=inline-block'>https://twitter.com/</span>
+        </div>
+        <div class="deux"> <input id="twitter" type="text" placeholder="Ecrire ici" value=""/>
+        </div>
+      </div>
+    </li>
+    <li>
+      <label id="sp"for="sitepers">Site perso</label><input id="sitepers" type="text" placeholder="Ecrire ici" value=""/>
+    </li>
+
+  </ul>
+  <button onclick="modiflien()"  type="button">Modifier lien</button>
 
 <!--///////////////////////////david//////////////////////-->
 
@@ -128,34 +154,40 @@ if(!isset($_SESSION['iduser'])){
 
     ?>
     <tr>
-      <td class='name'>
+      <td <?php if($a % 2 !== 0){ echo "class='colorRed'";} ?> class='name'>
         <?php echo $data['techno'] ?>
       </td>
-      <td>
+      <td <?php if($a % 2 !== 0){ echo "class='colorRed'";} ?>>
         <input type="radio" <?php if(($comp['niveau'] == 0)||($comp['niveau']===NULL)){echo 'checked="checked"';}; ?>name="lvl<?php echo $a ?>" onclick='valeur(<?php echo $a ?>, event)' value="0"/>
       </td>
-      <td>
+      <td <?php if($a % 2 !== 0){ echo "class='colorRed'";} ?>>
         <input type="radio" <?php if($comp['niveau'] == 1){echo 'checked="checked"';}; ?> name="lvl<?php echo $a ?>" onclick='valeur(<?php echo $a ?>, event)'  value="1"/>
       </td>
-      <td>
+      <td <?php if($a % 2 !== 0){ echo "class='colorRed'";} ?>>
         <input type="radio" <?php if($comp['niveau'] == 2){echo 'checked="checked"';}; ?> name="lvl<?php echo $a ?>" onclick='valeur(<?php echo $a ?>, event)'  value="2"/>
       </td>
-      <td>
+      <td <?php if($a % 2 !== 0){ echo "class='colorRed'";} ?>>
         <input type="radio" <?php if($comp['niveau'] == 3){echo 'checked="checked"';}; ?> name="lvl<?php echo $a ?>" onclick='valeur(<?php echo $a ?>, event)'  value="3"/>
       </td>
-      <td>
+      <td <?php if($a % 2 !== 0){ echo "class='colorRed'";} ?>>
         <input type="radio" <?php if($comp['niveau'] == 4){echo 'checked="checked"';}; ?> name="lvl<?php echo $a ?>" onclick='valeur(<?php echo $a ?>, event)'  value="4"/>
       </td>
-      <td>
+      <td <?php if($a % 2 !== 0){ echo "class='colorRed'";} ?>>
         <input type="radio" <?php if($comp['niveau'] == 5){echo 'checked="checked"';}; ?> name="lvl<?php echo $a ?>" onclick='valeur(<?php echo $a ?>, event)'  value="5"/>
       </td>
     </tr>
     <?php } ?>
   </table>
-  <input type="text" id='nom'/><input type="button" onclick='ajouter()' id='add' value="ajouter"/>
+
+
+  <div class="bloc">
+    <input type="text" id='nom'/><input type="button" onclick='ajouter()' id='add' value="ajouter"/>
+    <form action="ok.php" method="post"></form>
+  </div>
+
 
   <form action="ok.php" method="post">
-  <button>Terminer!</button>
+  <button id="terminer">Terminer!</button>
   </form>
 
   <script type="text/javascript">
@@ -259,7 +291,7 @@ if(!isset($_SESSION['iduser'])){
     //nom.textContent = document.getElementById('nom').value;
     var fonction = 'valeur('+i+', event)';
     for(j=0; j<6; j++){
-      var td2 = document.createElement('td')
+      var td2 = document.createElement('td');
       tr.appendChild(td2);
       var radio = document.createElement('input');
       radio.setAttribute('type', 'radio');
@@ -267,6 +299,10 @@ if(!isset($_SESSION['iduser'])){
       radio.setAttribute('name', 'lvl'+i);
       radio.setAttribute('value', j);
       radio.setAttribute('onclick', fonction);
+      if(i % 2 !== 0){
+        td.classList.add("colorRed");
+        td2.classList.add("colorRed");
+      }
     }
   }
 
