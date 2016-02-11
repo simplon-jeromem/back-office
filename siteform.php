@@ -53,6 +53,7 @@ if(!isset($_SESSION['iduser'])){
   $twitter = $lien['twitter'];
   $linkedin = $lien['linked'];
   $siteperso = $lien['siteperso'];
+  $cv = $lien['cv'];
 
   //AFFICHAGE Apprenant
   $requete2 = $connexion->prepare("SELECT * FROM  `apprenant` WHERE id=:iduser");
@@ -132,7 +133,9 @@ if(!isset($_SESSION['iduser'])){
     <li>
       <label id="sp"for="sitepers">Site perso</label><input id="sitepers" type="text" placeholder="Ecrire ici" value="<?php echo $siteperso ?>"/>
     </li>
-
+    <li>
+      <label id="cv"for="cv">CV</label><input id="inputcv" type="text" placeholder="Lien vers cv" value="<?php echo $cv ?>"/>
+    </li>
   </ul>
   <button onclick="modiflien()"  type="button">Modifier lien</button>
 
@@ -266,8 +269,9 @@ if(!isset($_SESSION['iduser'])){
     var linkedin =document.getElementById("linkedin").value;
     var twitter =document.getElementById("twitter").value;
     var siteperso =document.getElementById("sitepers").value;
+    var cv = document.getElementById("inputcv").value;
     // requete.onload=ajax;
-    requete.open("get","requete-form/modiflien.php?git="+git+"&codepen="+codepen+"&linked="+linkedin+"&twitter="+twitter+"&siteperso="+siteperso,true);
+    requete.open("get","requete-form/modiflien.php?git="+git+"&codepen="+codepen+"&linked="+linkedin+"&twitter="+twitter+"&siteperso="+siteperso+"&cv="+cv,true);
     requete.send();
     function ajax (){
       var tableau =this.responseText;
