@@ -62,15 +62,19 @@
     catch (Exception $e){
       die('Erreur : '.$e->getMessage());
     }
-    $reqApp = "SELECT * FROM `apprenant`";
-    $resApp = $connect->query($reqApp);
+    $request = $connect->prepare("SELECT * FROM `apprenant`");
+    $request->execute();
     $i = -1;
-    while($app = $resApp->fetch()){
+    while($app = $request->fetch(PDO::FETCH_ASSOC)){
       $appId = $app['id'];
-      $reqLiens = "SELECT * FROM `lien` WHERE id= $appId";
-      $resLiens = $connect->query($reqLiens);
-      $lien = $resLiens->fetch();
-      $i++
+      $request2 = $connect->prepare("SELECT * FROM `lien` WHERE id=:appId");
+      $request2->bindParam(':appId', $appId, PDO::PARAM_INT);
+      $request2->execute();
+      $lien = $request2->fetch();
+      $i++;
+        if($lien == 0){
+            echo 'ERROR';
+        }
       ?>
       <li><p class='apprenant' onclick='affiche(<?php echo $i ?>)'><?php echo $app['nom'] ?> <span><?php echo $app['prenom'] ?></span></p>
         <div class='div'>
