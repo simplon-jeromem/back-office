@@ -40,9 +40,9 @@ $resultats = $bdd->query($requete);
      };
      
      
-     array_push($eleve,$tableau);
+     array_push($eleves,$tableau);
  }}; 
-echo json_encode($eleve);
+echo json_encode($eleves);
 ?>
 
 
